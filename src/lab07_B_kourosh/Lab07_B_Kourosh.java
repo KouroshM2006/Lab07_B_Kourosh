@@ -23,7 +23,9 @@ import javafx.geometry.Pos;
  * @author 2440557
  */
 public class Lab07_B_Kourosh extends Application{
-
+    
+    private boolean play = true;
+    
     /**
      * @param args the command line arguments
      */
@@ -44,6 +46,21 @@ public class Lab07_B_Kourosh extends Application{
         Label bottomLabel = new Label("Waiting...");
         Label lblImage = new Label();
         
+        //creating buttons
+        Button btn = new Button("play");
+        
+        btn.setOnAction(e -> {
+            if (play) {
+                //play animation code
+                btn.setText("Pause");
+                play = false;
+            } else {
+                //pause animation code
+                btn.setText("Play");
+                play = true;
+            }
+        });
+        
         //setting Vbox and labels alignment
         middle.setAlignment(Pos.CENTER);
         BorderPane.setAlignment(bottomLabel, Pos.CENTER);
@@ -52,7 +69,7 @@ public class Lab07_B_Kourosh extends Application{
         //setting labels and vbox to the BorderPane
         root.setTop(topLabel);
         root.setBottom(bottomLabel);
-        middle.getChildren().add(lblImage);
+        middle.getChildren().addAll(lblImage, btn);
         root.setCenter(middle);
         
         //getting random number for image
